@@ -39,10 +39,16 @@ class DataAnalysis():
 
         return top_genre, top_sales
     
+    def console_analysis(self):
+        console_counts = self.df['Plataforma'].value_counts()
+        top_console = console_counts.idxmax()
+
+        return top_console
+    
 
 db = DataBase()
 cleaned_date = db.clean_data()
 
 file = DataAnalysis(cleaned_date)
 
-file.sales_and_genre_analysis()
+file.console_analysis()
