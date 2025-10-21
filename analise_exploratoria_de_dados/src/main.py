@@ -45,10 +45,24 @@ class DataAnalysis():
 
         return top_console
     
+    def decade_classification(self):
+        def classify_decade(year):
+            if 1990 <= year <= 1999:
+                return "Anos 90"
+            elif 2000 <= year <= 2009:
+                return "Anos 2000"
+            elif 2010 <= year:
+                return "Anos 2010"
+            
+        df_with_decade = self.df.copy()
+        df_with_decade['Decada'] = df_with_decade['Ano'].apply(classify_decade)
+        
+        return df_with_decade
+    
 
 db = DataBase()
 cleaned_date = db.clean_data()
 
 file = DataAnalysis(cleaned_date)
 
-file.console_analysis()
+file.decade_classification()
