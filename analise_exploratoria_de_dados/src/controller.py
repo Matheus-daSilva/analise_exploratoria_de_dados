@@ -60,8 +60,10 @@ class DataAnalysis():
         return df_with_decade
 
 class DataVisualization():
-    def __init__(self, df):
-        self.df = df.copy()
+    def __init__(self, decade_classification, sales, console):
+        self.df = decade_classification.copy()
+        self.sales = sales
+        self.console = console
 
     def plot_top_genres_sales(self):
         genre_sales = self.df.groupby('Gênero')['Vendas Globais (milhões)'].sum().sort_values(ascending=False).head(5)
@@ -86,19 +88,22 @@ class DataVisualization():
         plt.title('Total de Lançamentos de Jogos por Ano (1980-2016)')
         plt.xlabel('Ano')
         plt.ylabel('Número de Jogos Lançados')
-        plt.grid(True) # Adiciona uma grade para facilitar a leitura
+        plt.grid(True)
         plt.tight_layout()
         
         plt.show()    
     
-
-db = DataBase()
-cleaned_date = db.clean_data()
-
-file = DataAnalysis(cleaned_date)
-
-image = DataVisualization(cleaned_date)
-
-file.decade_classification()
-
-image.plot_releases_per_year()
+    def generate_conclusion(self):
+        peak_year = self.df['Ano'].value_counts().idxmax()
+        peak_decade = self.df['Decada'].value_counts().idxmax()
+ 
+        conclusion = (
+            f"A análise dos dados de vendas de jogos revela algumas tendências. "
+            f"O gênero de '{self.sales[0]}' é o líder de vendas globais, "
+            f"dominando o mercado em termos de vendas totais, somando: {self.sales[1]}m de jogos vendidos. "
+            f"Em relação a quantidades de jogos lançados, a plataforma '{self.console}' foi a "
+            f"que se destacou. Finalmente, o mercado de jogos atingiu seu pico de lançamentos no ano de {peak_year}, "
+            f"que se destaca como o período mais ativo para a indústria nos {peak_decade}."
+        )
+        
+        return conclusion
