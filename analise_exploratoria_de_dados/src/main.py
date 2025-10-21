@@ -2,6 +2,8 @@ import pandas as pd
 from pathlib import Path
 
 class DataBase():
+    def __init__(self):
+        pass
 
     def import_file(self):
         script_path = Path(__file__)
@@ -22,10 +24,8 @@ class DataBase():
         print(f"Quantidade de linhas antes: {len(df)}")
         cleaned_df = df.dropna(subset=['Ano'])
         print(f"Quantidade de linhas depois: {len(cleaned_df)}")
-        
-        # 4. Retorne o dataframe limpo
+
         return cleaned_df
 
 
 file = DataBase()
-print(file.clean_data())
