@@ -58,11 +58,15 @@ class DataAnalysis():
         df_with_decade['Decada'] = df_with_decade['Ano'].apply(classify_decade)
         
         return df_with_decade
+
+class DataVisualization():
+    def __init__(self):
+        pass
     
 
-db = DataBase()
-cleaned_date = db.clean_data()
+# db = DataBase()
+# cleaned_date = db.clean_data()
 
-file = DataAnalysis(cleaned_date)
+# file = DataAnalysis(cleaned_date)
 
-file.decade_classification()
+# file.decade_classification()
