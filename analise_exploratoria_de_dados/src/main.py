@@ -26,6 +26,11 @@ class DataBase():
         print(f"Quantidade de linhas depois: {len(cleaned_df)}")
 
         return cleaned_df
+    
+class DataAnalysis():
+    def __init__(self):
+        pass
+
 
 
 file = DataBase()
